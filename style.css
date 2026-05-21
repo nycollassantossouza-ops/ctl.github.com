@@ -1,1 +1,301 @@
+/* --- CONFIGURAÇÕES GERAIS E VARIÁVEIS DO CSS3 --- */
+:root {
+    --bg-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --card-background: #ffffff;
+    --text-color: #2d3748;
+    --text-muted: #718096;
+    
+    --color-professor: #4c51bf;
+    --color-professor-hover: #3c366b;
+    --color-aluno: #319795;
+    --color-aluno-hover: #234e52;
+    --color-sucesso: #38a169;
+    --color-erro: #e53e3e;
+    
+    --radius: 12px;
+    --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
 
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: var(--bg-gradient);
+    color: var(--text-color);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* CONTAINER PRINCIPAL DO APP */
+.app-container {
+    background: var(--card-background);
+    width: 100%;
+    max-width: 550px;
+    border-radius: 20px;
+    padding: 40px 30px;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2), 0 10px 10px -5px rgba(0, 0, 0, 0.1);
+    transition: var(--transition);
+}
+
+/* CABEÇALHO */
+.app-header {
+    text-align: center;
+    margin-bottom: 35px;
+    border-bottom: 2px solid #edf2f7;
+    padding-bottom: 20px;
+}
+
+.logo {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #4a5568;
+    letter-spacing: -1px;
+}
+
+.logo span {
+    color: #667eea;
+}
+
+.subtitle {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    margin-top: 5px;
+}
+
+/* SISTEMA DE ALTERNÂNCIA DE TELAS */
+.screen {
+    display: none;
+    animation: fadeIn 0.4s ease-in-out forwards;
+}
+
+.screen.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+h2 {
+    font-size: 1.5rem;
+    color: #1a202c;
+    margin-bottom: 12px;
+    text-align: center;
+}
+
+p {
+    font-size: 1rem;
+    color: var(--text-muted);
+    text-align: center;
+    margin-bottom: 25px;
+    line-height: 1.5;
+}
+
+/* BOTÕES INTERATIVOS (MICRO-INTERAÇÕES) */
+.btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 16px;
+    font-size: 1.05rem;
+    font-weight: 600;
+    border: none;
+    border-radius: var(--radius);
+    cursor: pointer;
+    margin-bottom: 15px;
+    transition: var(--transition);
+    gap: 10px;
+}
+
+.btn i { font-style: normal; font-size: 1.3rem; }
+
+.btn-professor { background-color: var(--color-professor); color: white; }
+.btn-professor:hover { background-color: var(--color-professor-hover); transform: translateY(-2px); }
+
+.btn-aluno { background-color: var(--color-aluno); color: white; }
+.btn-aluno:hover { background-color: var(--color-aluno-hover); transform: translateY(-2px); }
+
+.btn-sucesso { background-color: var(--color-sucesso); color: white; }
+.btn-sucesso:hover { background-color: #2f855a; transform: translateY(-2px); }
+
+.btn-voltar { background-color: #edf2f7; color: #4a5568; margin-top: 10px; }
+.btn-voltar:hover { background-color: #e2e8f0; }
+
+/* FORMULÁRIOS DE ENTRADA (PROFESSOR E ALUNO) */
+.form-group {
+    text-align: left;
+    margin-bottom: 25px;
+}
+
+label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #4a5568;
+    font-size: 0.9rem;
+}
+
+input[type="text"], textarea, select {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid #e2e8f0;
+    border-radius: var(--radius);
+    font-size: 1rem;
+    color: var(--text-color);
+    background-color: #f7fafc;
+    margin-bottom: 18px;
+    transition: var(--transition);
+}
+
+input:focus, textarea:focus, select:focus {
+    border-color: #667eea;
+    background-color: #fff;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.15);
+}
+
+/* PREFIXOS DE SINALIZAÇÃO A, B, C */
+.input-prefix {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.input-prefix span {
+    background: #e2e8f0;
+    color: #4a5568;
+    font-weight: 700;
+    padding: 12px 18px;
+    border: 2px solid #e2e8f0;
+    border-right: none;
+    border-radius: var(--radius) 0 0 var(--radius);
+}
+
+.input-prefix input {
+    margin-bottom: 0;
+    border-radius: 0 var(--radius) var(--radius) 0;
+}
+
+/* CAIXA DE CÓDIGO DA SALA */
+.box-codigo {
+    background: #f7fafc;
+    border: 2px dashed #cbd5e0;
+    padding: 20px;
+    border-radius: var(--radius);
+    margin-bottom: 25px;
+}
+
+.box-codigo textarea {
+    background: transparent;
+    border: none;
+    resize: none;
+    font-family: monospace;
+    font-size: 0.9rem;
+    text-align: center;
+    margin-bottom: 15px;
+    color: #2b6cb0;
+}
+
+.btn-copiar { background-color: #4a5568; color: white; font-size: 0.95rem; padding: 10px; }
+.btn-copiar:hover { background-color: #2d3748; }
+
+/* INTERFACE DO JOGO (TELA DO ALUNO) */
+.game-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 25px;
+}
+
+.badge {
+    background: #edf2f7;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #4a5568;
+}
+
+.badge-quiz { background: #feebc8; color: #c05621; }
+
+.card-pergunta {
+    background: #f7fafc;
+    border-left: 5px solid #667eea;
+    padding: 25px;
+    border-radius: var(--radius);
+    margin-bottom: 30px;
+    text-align: left;
+}
+
+.card-pergunta h3 {
+    font-size: 1.25rem;
+    line-height: 1.5;
+    color: #2d3748;
+}
+
+/* BOTÕES DE ALTERNATIVAS DO JOGO */
+.btn-opcao {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 16px;
+    background: white;
+    border: 2px solid #e2e8f0;
+    border-radius: var(--radius);
+    font-size: 1rem;
+    font-weight: 600;
+    text-align: left;
+    cursor: pointer;
+    margin-bottom: 14px;
+    transition: var(--transition);
+    color: var(--text-color);
+}
+
+.btn-opcao .letra {
+    background: #edf2f7;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    margin-right: 15px;
+    font-weight: 700;
+    color: #718096;
+    transition: var(--transition);
+}
+
+.btn-opcao:hover {
+    border-color: #667eea;
+    background: #f8fafc;
+    transform: translateX(4px);
+}
+
+.btn-opcao:hover .letra {
+    background: #667eea;
+    color: white;
+}
+
+/* TELA DE NOTA E RESULTADO */
+.sucesso-icon { font-size: 4rem; margin-bottom: 15px; text-align: center; }
+.card-nota {
+    background: #f7fafc;
+    padding: 20px;
+    border-radius: var(--radius);
+    margin: 20px auto;
+    width: 180px;
+    border: 2px solid #edf2f7;
+}
+.card-nota p { margin-bottom: 5px; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; }
+#notaValor { font-size: 2.2rem; font-weight: 800; color: #2d3748; }
+
+.correto-style { background-color: #c6f6d5 !important; border-color: #38a169 !important; color: #22543d !important; }
+.errado-style { background-color: #fed7d7 !important; border-color: #e53e3e !important; color: #742a2a !important; }
