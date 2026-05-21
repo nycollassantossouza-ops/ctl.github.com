@@ -1,1 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduQuiz Pro - Plataforma Gamificada</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
+    <div class="app-container">
+        <header class="app-header">
+            <div class="logo">🎓 EduQuiz<span>Pro</span></div>
+            <p class="subtitle">Aprenda jogando em tempo real com sua turma</p>
+        </header>
+
+        <section id="tela-inicial" class="screen active">
+            <h2>Bem-vindo ao Jogo!</h2>
+            <p>Selecione o seu perfil para acessar a plataforma:</p>
+            <div class="menu-buttons">
+                <button class="btn btn-professor" onclick="mudarTela('tela-professor')">
+                    <i>👨‍🏫</i> Painel do Professor
+                </button>
+                <button class="btn btn-aluno" onclick="mudarTela('tela-aluno-entrada')">
+                    <i>🎒</i> Área do Aluno
+                </button>
+            </div>
+        </section>
+
+        <section id="tela-professor" class="screen">
+            <h2>Painel de Criação de Quizzes</h2>
+            <p>Monte o seu questionário personalizado e gere o código da sala.</p>
+            
+            <div class="form-group">
+                <label for="tituloQuiz">Título do Quiz:</label>
+                <input type="text" id="tituloQuiz" placeholder="Ex: Simulado de História - 1º Ano">
+                
+                <label for="perguntaInput">Pergunta:</label>
+                <textarea id="perguntaInput" rows="3" placeholder="Digite o enunciado da questão..."></textarea>
+                
+                <label>Alternativas de Resposta:</label>
+                <div class="input-prefix">
+                    <span class="prefix-a">A</span>
+                    <input type="text" id="opcA" placeholder="Digite a alternativa A">
+                </div>
+                <div class="input-prefix">
+                    <span class="prefix-b">B</span>
+                    <input type="text" id="opcB" placeholder="Digite a alternativa B">
+                </div>
+                <div class="input-prefix">
+                    <span class="prefix-c">C</span>
+                    <input type="text" id="opcC" placeholder="Digite a alternativa C">
+                </div>
+
+                <label for="correta">Alternativa Correta:</label>
+                <select id="correta">
+                    <option value="">-- Selecione a resposta certa --</option>
+                    <option value="A">Alternativa A</option>
+                    <option value="B">Alternativa B</option>
+                    <option value="C">Alternativa C</option>
+                </select>
+            </div>
+
+            <button class="btn btn-sucesso" onclick="criarCodigoQuiz()">✨ Criar e Gerar Código</button>
+            <button class="btn btn-voltar" onclick="mudarTela('tela-inicial')">Voltar ao Início</button>
+        </section>
+
+        <section id="tela-codigo-gerado" class="screen">
+            <div class="sucesso-icon">🎉</div>
+            <h2>Sala Criada com Sucesso!</h2>
+            <p>Copie o código criptografado abaixo e envie para os seus alunos no mesmo ambiente (WhatsApp, Teams, Sala de Aula):</p>
+            
+            <div class="box-codigo">
+                <textarea id="codigoGerado" readonly></textarea>
+                <button class="btn btn-copiar" onclick="copiarCodigoTexto()">📋 Copiar Código</button>
+            </div>
+
+            <button class="btn btn-voltar" onclick="mudarTela('tela-inicial')">Concluído</button>
+        </section>
+
+        <section id="tela-aluno-entrada" class="screen">
+            <h2>Acessar Sala do Quiz</h2>
+            <p>Identifique-se e insira o código fornecido pelo seu professor:</p>
+            
+            <div class="form-group">
+                <label for="nomeAluno">Seu Nome Completo:</label>
+                <input type="text" id="nomeAluno" placeholder="Ex: João Silva">
+
+                <label for="codigoInput">Código da Sala:</label>
+                <textarea id="codigoInput" rows="4" placeholder="Cole aqui o código gerado pelo professor..."></textarea>
+            </div>
+
+            <button class="btn btn-aluno" onclick="conectarAoQuiz()">🚀 Entrar no Jogo</button>
+            <button class="btn btn-voltar" onclick="mudarTela('tela-inicial')">Voltar</button>
+        </section>
+
+        <section id="tela-jogo" class="screen">
+            <div class="game-header">
+                <span id="nomeJogadorBadge" class="badge">Jogador: Aluno</span>
+                <span id="tituloQuizBadge" class="badge badge-quiz">Quiz Carregado</span>
+            </div>
+
+            <div class="card-pergunta">
+                <h3 id="txtPergunta">Carregando pergunta...</h3>
+            </div>
+
+            <div class="alternativas-container">
+                <button class="btn-opcao" id="btnOptA" onclick="enviarRespostaAluno('A')">
+                    <span class="letra">A</span> <span id="txtOptA">Opção A</span>
+                </button>
+                <button class="btn-opcao" id="btnOptB" onclick="enviarRespostaAluno('B')">
+                    <span class="letra">B</span> <span id="txtOptB">Opção B</span>
+                </button>
+                <button class="btn-opcao" id="btnOptC" onclick="enviarRespostaAluno('C')">
+                    <span class="letra">C</span> <span id="txtOptC">Opção C</span>
+                </button>
+            </div>
+        </section>
+
+        <section id="tela-resultado" class="screen">
+            <div id="resultadoIcone"></div>
+            <h2 id="resultadoTitulo">Resultado</h2>
+            
+            <div class="card-nota">
+                <p>Sua Nota Final</p>
+                <div id="notaValor">0 / 10</div>
+            </div>
+
+            <p id="resultadoMensagem"></p>
+
+            <button class="btn btn-voltar" onclick="mudarTela('tela-inicial')">Sair do Jogo</button>
+        </section>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
